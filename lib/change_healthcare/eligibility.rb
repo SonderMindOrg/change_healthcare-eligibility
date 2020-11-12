@@ -1,4 +1,4 @@
-require "change_healthcare/eligibility/version"
+require 'change_healthcare/eligibility/version'
 
 module ChangeHealthcare
   module Eligibility
