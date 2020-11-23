@@ -116,6 +116,9 @@ Style/SlicingWithRange:
 RSpec/NestedGroups:
   Max: 5
 
+RSpec/ImplicitSubject:
+  Enabled: false
+
 RSpec/ExampleLength:
   Max: 10
 

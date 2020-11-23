@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'change_healthcare/eligibility'
+require 'support/custom_matchers/parse_value'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
