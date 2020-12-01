@@ -19,7 +19,7 @@ module ChangeHealthcare
       # a `Set`, or a `Regexp` to do your matching.
       #
       # @param matcher [#===] matcher to match against, using `#===`
-      # @return [TrueClass|FalseClass]
+      # @return [true,false]
       def active_coverage?(matcher)
         active_coverage_information.any? do |coverage|
           (coverage.service_types || []).any? { |type| matcher === type } # rubocop:disable Style/CaseEquality
@@ -31,7 +31,7 @@ module ChangeHealthcare
       # This will attempt to find a service type values
       #
       # @param match_service_type [#===] a matcher to filter down the service type.
-      # @return [Float|NilClass]
+      # @return [Float,nil] the active coinsurance, or nil if none exist
       def active_coinsurance(match_service_type: proc { true })
         found = active_coverage_information.select(&:benefit_percent).detect do |bv|
           (bv.service_types || []).any? { |type| match_service_type === type } # rubocop:disable Style/CaseEquality
