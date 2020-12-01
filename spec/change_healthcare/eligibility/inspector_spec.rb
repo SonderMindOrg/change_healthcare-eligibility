@@ -32,25 +32,27 @@ RSpec.describe ChangeHealthcare::Eligibility::Inspector do
           it { should all be_a(ChangeHealthcare::Eligibility::SwaggerClient::BenefitsInformation) }
         end
 
+        describe '.copayment_records' do
+          subject { inspector.copayment_records }
+
+          it { should be_a(Array) }
+          it { should all have_attributes(name: 'Co-Payment') }
+          it { should all be_a(ChangeHealthcare::Eligibility::SwaggerClient::BenefitsInformation) }
+        end
+
+        describe '.coinsurance_records' do
+          subject { inspector.coinsurance_records }
+
+          it { should be_a(Array) }
+          it { should all have_attributes(name: 'Co-Insurance') }
+          it { should all be_a(ChangeHealthcare::Eligibility::SwaggerClient::BenefitsInformation) }
+        end
+
         describe '.benefits_information' do
           subject { inspector.benefits_information }
 
           specify { expect { subject }.not_to raise_error }
           it { should all be_a(ChangeHealthcare::Eligibility::SwaggerClient::BenefitsInformation) }
-        end
-
-        describe '.active_coinsurance' do
-          context 'with no matcher' do
-            subject { inspector.active_coinsurance }
-
-            it { should be_a(Float) | be_nil }
-          end
-
-          context 'with a matcher that never matches' do
-            subject { inspector.active_coinsurance(match_service_type: proc { false }) }
-
-            it { should be_nil }
-          end
         end
       end
     end
