@@ -1,8 +1,7 @@
 # ChangeHealthcare::Eligibility
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/change_healthcare/eligibility`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This Ruby Gems provides the automatically generated swagger code for the [Change Healthcare Eligibility API](https://developers.changehealthcare.com/api/Eligibility/v3).
+It also provides a wrapper that makes making requests a bit easier by caching and re-fetching authorization information.
 
 ## Installation
 
@@ -22,7 +21,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+The automatically generated API is located under the namespace `ChangeHealthcare::Eligibility::SwaggerClient`.
+Most people should access it via the `ChangeHealthcare::Eligibility::Wrapper` class, which provides swagger caching.
+
+That is used as so:
+
+```ruby
+wrapper = ChangeHealthcare::Eligibility::Wrapper.new(client_id: ENV['CH_CLIENT_ID'], client_secret: ENV['CH_CLIENT_SECRET'])
+request = ChangeHealthcare::Eligibility::SwaggerClient::MedicalEligibility.new.tap do |elig|
+  elig.control_number = some_control_number
+  elig.subscriber = some_subscriber
+  # etc
+end
+
+wrapper.eligibility(request) # => ChangeHealthcare::Eligibility::SwaggerClient::Response
+```
+
+The need to construct values with by assigning attributes with `.tap` is a side-effect of how swagger codegen works, unfortunately.
 
 ## Development
 
