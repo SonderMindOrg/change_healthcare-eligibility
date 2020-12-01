@@ -10,3 +10,4 @@ end
 
 require 'change_healthcare/eligibility/swagger_client'
 require 'change_healthcare/eligibility/wrapper'
+require 'change_healthcare/eligibility/inspector'

@@ -27,13 +27,45 @@ module ChangeHealthcare
       end
 
       ##
+      # Try to get the active coinsurance amount.
+      # This will attempt to find a service type values
+      #
+      # @param match_service_type [#===] a matcher to filter down the service type.
+      # @return [Float|NilClass]
+      def active_coinsurance(match_service_type: proc { true })
+        found = active_coverage_information.select(&:benefit_percent).detect do |bv|
+          (bv.service_types || []).any? { |type| match_service_type === type } # rubocop:disable Style/CaseEquality
+        end
+
+        found&.benefit_percent
+      end
+
+      ##
+      # All benefits information records that describe a deductible.
+      #
+      # @return [Array<ChangeHealthcare::Eligibility::SwaggerClient::BenefitsInformation>]
+      def deductible_records
+        benefits_information.select do |bv|
+          bv.name == 'Deductible'
+        end
+      end
+
+      ##
       # Benefits Information for active coverage
       #
       # @return [Array<ChangeHealthcare::Eligibility::SwaggerClient::BenefitsInformation>]
       def active_coverage_information
-        response.benefits_information.select do |bv|
+        benefits_information.select do |bv|
           bv.name == 'Active Coverage'
         end
+      end
+
+      ##
+      # A list of all benefits information.
+      #
+      # @return [Array<ChangeHealthcare::Eligibility::SwaggerClient::BenefitsInformation>]
+      def benefits_information
+        response.benefits_information || []
       end
 
       ##
