@@ -34,7 +34,9 @@ request = ChangeHealthcare::Eligibility::SwaggerClient::MedicalEligibility.new.t
   # etc
 end
 
-wrapper.eligibility(request) # => ChangeHealthcare::Eligibility::SwaggerClient::Response
+response = wrapper.eligibility(request) # => ChangeHealthcare::Eligibility::SwaggerClient::Response
+
+response.benefits_information.any? { |bi| bi.name == 'Deductible' }
 ```
 
 The need to construct values by assigning attributes with `.tap` is a side-effect of how swagger codegen works, unfortunately.
