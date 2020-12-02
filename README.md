@@ -37,7 +37,7 @@ end
 wrapper.eligibility(request) # => ChangeHealthcare::Eligibility::SwaggerClient::Response
 ```
 
-The need to construct values with by assigning attributes with `.tap` is a side-effect of how swagger codegen works, unfortunately.
+The need to construct values by assigning attributes with `.tap` is a side-effect of how swagger codegen works, unfortunately.
 
 ## Development
 
