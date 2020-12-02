@@ -1,6 +1,6 @@
 # ChangeHealthcare::Eligibility
 
-This Ruby Gems provides the automatically generated swagger code for the [Change Healthcare Eligibility API](https://developers.changehealthcare.com/api/Eligibility/v3).
+This Ruby Gem provides the automatically generated swagger code for the [Change Healthcare Eligibility API](https://developers.changehealthcare.com/api/Eligibility/v3).
 It also provides a wrapper that makes making requests a bit easier by caching and re-fetching authorization information.
 
 ## Installation
