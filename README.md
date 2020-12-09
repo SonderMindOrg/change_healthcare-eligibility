@@ -28,10 +28,9 @@ That is used as so:
 
 ```ruby
 wrapper = ChangeHealthcare::Eligibility::Wrapper.new(client_id: ENV['CH_CLIENT_ID'], client_secret: ENV['CH_CLIENT_SECRET'])
-request = ChangeHealthcare::Eligibility::SwaggerClient::MedicalEligibility.new.tap do |elig|
-  elig.control_number = some_control_number
-  elig.subscriber = some_subscriber
-  # etc
+request = ChangeHealthcare::Eligibility::SwaggerClient::MedicalEligibility.new
+request.control_number = some_control_number
+request.subscriber = some_subscriber
 end
 
 response = wrapper.eligibility(request) # => ChangeHealthcare::Eligibility::SwaggerClient::Response
@@ -39,7 +38,16 @@ response = wrapper.eligibility(request) # => ChangeHealthcare::Eligibility::Swag
 response.benefits_information.any? { |bi| bi.name == 'Deductible' }
 ```
 
-The need to construct values by assigning attributes with `.tap` is a side-effect of how swagger codegen works, unfortunately.
+You can also make a request using `tap`, which you might subjectively find nicer:
+
+```ruby
+request = ChangeHealthcare::Eligibility::SwaggerClient::MedicalEligibility.new.tap do |e|
+  e.control_number = some_control_number
+  e.subscriber = some_subscriber
+end
+```
+
+Both of these have the same effect: you're just mutating attributes on a `request` object.
 
 ## Development
 
