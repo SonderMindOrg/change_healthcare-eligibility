@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   # needed for autogen swagged client
-  spec.add_dependency 'addressable', '~> 2.4.0'
+  spec.add_dependency 'addressable', '~> 2.5.0'
   spec.add_dependency 'typhoeus', '~> 1.4.0'
 
   spec.add_development_dependency 'bundler', '~> 2.0'
